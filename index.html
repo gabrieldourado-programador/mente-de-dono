@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mente de Dono — Portal do Aluno (Protegido)</title>
+<meta name="description" content="Curso Mente de Dono: módulos claros, exercícios guiados, busca, apostila em PDF e certificado. Responsivo e protegido por login Hotmart.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="preload" as="style" onload="this.rel='stylesheet'">
+<style>
+  :root{ --bg:#0b0b0d; --panel:#131316; --panel2:#0f0f12; --text:#e9e9ee; --muted:#b6b6bf; --gold:#d4af37; --ok:#2ecc71; --radius:12px; --shadow:0 8px 30px rgba(0,0,0,.35); --sidebar-w:320px }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{ margin:0; background: radial-gradient(1200px 1200px at 10% -10%, rgba(212,175,55,.07), transparent 50%), var(--bg); color:var(--text); font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial; line-height:1.55; font-size: clamp(14px, 1.2vw + 10px, 16px) }
+  h1{ font-size: clamp(20px, 1.2rem + 1.2vw, 28px); margin:0 0 6px } h2{ font-size: clamp(18px, 1rem + 1vw, 22px) } .pill{ font-size: clamp(10px, .7rem, 12px) }
+  .app{ display:grid; grid-template-columns: var(--sidebar-w) 1fr; gap:24px; min-height:100vh }
+  main{ padding:24px clamp(16px, 2vw, 28px) 90px; max-width:1400px; width:100% }
+  .card{ background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--panel); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(16px, 2vw, 22px) }
+  section.module{ margin:0 0 22px; scroll-margin-top:80px } .meta{ display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:.9em; margin-bottom:10px }
+  aside{ position:sticky; top:0; height:100vh; overflow:auto; padding:0; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--panel2); border-right:1px solid rgba(255,255,255,.06); z-index:5 }
+  .aside-header{ position:sticky; top:0; z-index:6; display:flex; flex-direction:column; gap:10px; padding:18px; background:linear-gradient(180deg, rgba(10,10,12,.85), rgba(10,10,12,.55)); backdrop-filter: blur(8px); border-bottom:1px solid rgba(255,255,255,.06) }
+  .logo-badge{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; background:linear-gradient(145deg, rgba(212,175,55,.18), rgba(212,175,55,.05)); border:1px solid rgba(212,175,55,.35); padding:10px 12px; border-radius:12px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.05) }
+  .aside-actions{ display:flex; gap:10px; flex-wrap:wrap }
+  .btn{ appearance:none; border:none; cursor:pointer; padding:12px 14px; border-radius:10px; font-weight:700; color:#111; background:linear-gradient(180deg, #fff5cf, #d4af37); box-shadow:var(--shadow); min-height:42px }
+  .btn.secondary{ background:#1b1b20; color:#e9e9ee; border:1px solid rgba(255,255,255,.10) } .btn.ghost{ background:transparent; color:#e9e9ee; border:1px dashed rgba(212,175,55,.5) } .btn--full{ flex:1 1 auto }
+  .search{ width:100%; background:#121217; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; color:#e9e9ee; outline:none }
+  .aside-body{ padding:14px 18px 18px } nav .toc{ list-style:none; padding:0; margin:8px 0 0; display:grid; gap:8px }
+  .nav-item{ display:grid; grid-template-columns: 36px 1fr auto; align-items:center; gap:10px; padding:10px; border:1px solid rgba(255,255,255,.06); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.02), transparent); transition: transform .12s ease, border-color .12s ease, background .12s ease }
+  .nav-item:hover{ transform:translateY(-1px); border-color:rgba(212,175,55,.35); background:rgba(212,175,55,.06) }
+  .nav-index{ display:grid; place-items:center; width:36px; height:36px; border-radius:10px; background:rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.35); color:#f3e1a0; font-weight:800 }
+  .nav-title{ display:flex; flex-direction:column; gap:4px } .nav-title a{ color:#e9e9ee; text-decoration:none; font-weight:700; line-height:1.2 }
+  .nav-meta{ color:var(--muted); font-size:.8em } .badge-done{ padding:4px 8px; border-radius:999px; border:1px solid rgba(46,204,113,.45); background:rgba(46,204,113,.12); color:#6ee7a8; font-weight:700 }
+  .progressbar{ height:6px; background:#1a1c22; border:1px solid rgba(255,255,255,.12); border-radius:999px; overflow:hidden } .progressbar>i{ display:block; height:100%; width:0%; background:linear-gradient(90deg,#f0d67a,#d4af37) }
+  details.module-block{ border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px 12px 6px; background:#101014; margin:10px 0 } details.module-block summary{ cursor:pointer; list-style:none; font-weight:700; color:#fff; outline:none; padding:6px 2px }
+  details.module-block[open]{ background:#0f0f13 } .exercise{ background:#0d1116; border:1px solid rgba(255,255,255,.08); padding:12px; border-radius:12px; margin-top:10px } .exercise label{display:block; margin:10px 0; cursor:pointer} .exercise input[type="checkbox"]{ width:20px; height:20px } .exercise .tiny{display:block; margin:6px 0 0 26px; font-size:.92em}
+  .quote{ margin:10px 0 0; padding:10px 12px; border-left:3px solid rgba(212,175,55,.6); background:#0e0e12; color:#f7f3d6; border-radius:8px; font-style:italic; font-weight:600 }
+  .foot{ position:sticky; bottom:0; left:0; right:0; backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(10,10,12,.2), rgba(10,10,12,.6)); border-top:1px solid rgba(255,255,255,.08); padding:10px 18px; display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:.9em }
+  .hamburger{ position:fixed; top:10px; left:10px; z-index:7; width:44px; height:44px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:linear-gradient(180deg,#1b1b20,#121217); color:#f5e7b0; display:none; align-items:center; justify-content:center; box-shadow:var(--shadow); font-weight:800 }
+  .drawer-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:4; display:none }
+  @media (max-width: 980px){ .app{ grid-template-columns: 1fr } main{ padding:80px 14px 90px } aside{ position:fixed; inset:0 auto 0 0; width:min(92vw, 360px); transform:translateX(-100%); transition:transform .25s ease; box-shadow: 20px 0 40px rgba(0,0,0,.5) } body[data-drawer="open"] aside{ transform:translateX(0) } .hamburger{ display:flex } .drawer-overlay{ display:block; opacity:0; pointer-events:none; transition: opacity .25s ease } body[data-drawer="open"] .drawer-overlay{ opacity:1; pointer-events:auto } .btn{ width:100% } .aside-actions{ gap:8px } .nav-item{ grid-template-columns: 32px 1fr auto } .nav-index{ width:32px; height:32px } .exercise input[type="checkbox"]{ width:22px; height:22px } }
+  @media print{ .hamburger,.drawer-overlay,aside,.foot{display:none !important} body{background:#fff; color:#000} .card,details{border:none; background:#fff} }
+</style>
+</head>
+<body>
+<button class="hamburger" id="btnDrawer" aria-label="Abrir menu">☰</button>
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+
+<div class="app">
+  <aside aria-label="Navegação lateral">
+    <div class="aside-header">
+      <div class="logo-badge"><span>💠</span><span>Mente de Dono</span></div>
+      <h1>Portal do Aluno</h1>
+      <div class="tiny">Acesso protegido — autenticado via Hotmart</div>
+
+      <div class="aside-actions">
+        <button class="btn btn--full" onclick="print()">Imprimir / PDF</button>
+        <button class="btn btn--full" id="btnApostila">Baixar Apostila (PDF)</button>
+        <button class="btn secondary" id="btnExpand">Expandir</button>
+        <button class="btn secondary" id="btnCollapse">Recolher</button>
+        <button class="btn ghost" id="btnReset">Zerar</button>
+        <button class="btn ghost" onclick="logout()">Sair</button>
+      </div>
+
+      <input id="q" class="search" placeholder="Buscar (ex.: tráfego, pitch, dívidas)" aria-label="Buscar no conteúdo" />
+    </div>
+
+    <div class="aside-body">
+      <nav>
+        <ul class="toc" id="toc"></ul>
+        <div class="tiny" id="overallProgress">Progresso: 0% concluído</div>
+        <div class="tiny">Atalhos: “/” busca • “E” expandir • “R” recolher</div>
+      </nav>
+    </div>
+  </aside>
+
+  <main>
+    <header class="card" role="banner">
+      <h2 style="margin:0 0 8px">Bem-vindo(a) ao curso <span class="pill">O Código da Liberdade</span></h2>
+      <p class="tiny">Explicações diretas, exemplos práticos e exercícios passo a passo. Seu progresso é salvo no navegador.</p>
+      <div class="tiny" id="userLine"></div>
+    </header>
+
+    <!-- MÓDULOS (resumo para manter curto no exemplo) -->
+    <section id="mod1" class="module card" data-module="1"><h2>📘 Módulo 1 — Primeiro Passo para a Mente de Dono</h2>
+      <div class="meta"><span class="pill">Mentalidade</span><span class="pill">Início</span></div>
+      <details class="module-block" open><summary>Introdução</summary><p>Assuma o controle do que está sob sua responsabilidade.</p><div class="quote">“A vida muda quando você para de procurar culpados e começa a procurar caminhos.”</div></details>
+      <details class="module-block"><summary>Os 3 pilares</summary><ul><li><b>Responsabilidade</b></li><li><b>Longo prazo</b></li><li><b>Ação estratégica</b></li></ul></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m1e1"> Mapa de crenças</label><label><input type="checkbox" data-check="m1e2"> Pós-mortem</label><label><input type="checkbox" data-check="m1e3"> 5 anos → Hoje</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="1" id="done1"><label for="done1"><b>Marcar módulo 1 como concluído</b></label></div>
+    </section>
+
+    <section id="mod2" class="module card" data-module="2"><h2>💰 Módulo 2 — Rompendo as Correntes Financeiras</h2>
+      <div class="meta"><span class="pill">Finanças</span><span class="pill">Fundamentos</span></div>
+      <details class="module-block" open><summary>Introdução</summary><p>Medir o fluxo de caixa impede que aumentos de renda virem mais gastos.</p></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m2e1"> Diário de gastos</label><label><input type="checkbox" data-check="m2e2"> Cortes invisíveis</label><label><input type="checkbox" data-check="m2e3"> Reserva</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="2" id="done2"><label for="done2"><b>Marcar módulo 2 como concluído</b></label></div>
+    </section>
+
+    <section id="mod3" class="module card" data-module="3"><h2>🏗️ Módulo 3 — Construindo Fontes de Renda</h2>
+      <div class="meta"><span class="pill">Renda</span><span class="pill">Diversificação</span></div>
+      <details class="module-block" open><summary>Introdução</summary><p>Combine renda ativa (caixa rápido) e passiva (escala).</p></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m3e1"> 3 fontes extras</label><label><input type="checkbox" data-check="m3e2"> Plano 7 dias</label><label><input type="checkbox" data-check="m3e3"> % reinvestimento</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="3" id="done3"><label for="done3"><b>Marcar módulo 3 como concluído</b></label></div>
+    </section>
+
+    <section id="mod4" class="module card" data-module="4"><h2>🛎️ Módulo 4 — A Arte da Venda</h2>
+      <div class="meta"><span class="pill">Vendas</span><span class="pill">Oferta</span></div>
+      <details class="module-block" open><summary>Introdução</summary><p>Entenda a dor do cliente, ofereça solução clara, reduza incerteza.</p></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m4e1"> Pitch 30s</label><label><input type="checkbox" data-check="m4e2"> Oferta + bônus</label><label><input type="checkbox" data-check="m4e3"> Provas</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="4" id="done4"><label for="done4"><b>Marcar módulo 4 como concluído</b></label></div>
+    </section>
+
+    <section id="mod5" class="module card" data-module="5"><h2>🚀 Módulo 5 — Dominando o Tráfego Pago</h2>
+      <div class="meta"><span class="pill">Aquisição</span><span class="pill">Meta/Google Ads</span></div>
+      <details class="module-block" open><summary>Fundamentos</summary><p>Tráfego pago testa hipóteses rápido e amplia o que já funciona.</p></details>
+      <details class="module-block"><summary>Siglas</summary><ul><li><b>CPC</b>: Custo por Clique</li><li><b>CTR</b>: Taxa de Cliques</li><li><b>CPM</b>: Custo por Mil</li><li><b>CPA</b>: Custo por Aquisição</li><li><b>ROAS</b>: Retorno sobre Anúncios</li></ul></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m5e1"> Headlines + CTAs</label><label><input type="checkbox" data-check="m5e2"> Funil 3 passos</label><label><input type="checkbox" data-check="m5e3"> Regras de decisão</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="5" id="done5"><label for="done5"><b>Marcar módulo 5 como concluído</b></label></div>
+    </section>
+
+    <section id="mod6" class="module card" data-module="6"><h2>📈 Módulo 6 — Escalando o Negócio</h2>
+      <div class="meta"><span class="pill">Processos</span><span class="pill">Time & sistemas</span></div>
+      <details class="module-block" open><summary>Estratégias</summary><ul><li><b>SOPs</b> reduzem erro</li><li>Delegue repetitivo</li><li>Melhoria contínua</li></ul></details>
+      <details class="module-block"><summary>Siglas úteis</summary><ul><li><b>SOPs</b>: Procedimentos Operacionais Padrão</li><li><b>KPI</b>: Indicador-chave de Desempenho</li></ul></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m6e1"> 3 tarefas para delegar</label><label><input type="checkbox" data-check="m6e2"> Criar 1 SOP</label><label><input type="checkbox" data-check="m6e3"> Definir 1 KPI</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="6" id="done6"><label for="done6"><b>Marcar módulo 6 como concluído</b></label></div>
+    </section>
+
+    <section id="mod7" class="module card" data-module="7"><h2>🧭 Módulo 7 — Libertando-se da Mente Criadora de Dívidas (bônus)</h2>
+      <div class="meta"><span class="pill">Mentalidade financeira</span><span class="pill">Antidívidas</span></div>
+      <details class="module-block" open><summary>Plano prático</summary><ul><li>Diagnóstico</li><li>Prioridade: bola de neve/avalanche</li><li>Prevenção</li></ul></details>
+      <div class="exercise"><strong>Exercícios</strong><label><input type="checkbox" data-check="m7e1"> Planilha de dívidas</label><label><input type="checkbox" data-check="m7e2"> Roteiro de negociação</label><label><input type="checkbox" data-check="m7e3"> Gatilhos e barreiras</label></div>
+      <div class="checkpoint"><input type="checkbox" data-complete="7" id="done7"><label for="done7"><b>Marcar módulo 7 como concluído</b></label></div>
+    </section>
+
+    <section class="card" id="graduation" aria-live="polite">
+      <h2>🏅 Conclusão do Curso</h2>
+      <p class="tiny" id="gradHint">Complete todos os módulos para liberar seu certificado.</p>
+      <button id="btnCertificate" class="btn" disabled>Desbloquear Certificado de Conclusão</button>
+    </section>
+  </main>
+</div>
+
+<div class="foot" role="contentinfo">
+  <div class="tiny"><span id="statCount">0/7 módulos concluídos</span></div>
+  <div class="tiny">Atalhos: “/” busca • “E” expandir • “R” recolher</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+// ===== Helpers =====
+const KEY_CHECKS='md_checks_v1', KEY_DONE='md_done_v1', KEY_NAME='md_student_name';
+const $=(q,r=document)=>r.querySelector(q); const $$=(q,r=document)=>Array.from(r.querySelectorAll(q));
+function load(k,f){ try{return JSON.parse(localStorage.getItem(k)) ?? f}catch{return f} } function save(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+
+// ===== Guard (Hotmart/JWT) =====
+(async function guard(){
+  const token = localStorage.getItem('md_token');
+  if(!token){ location.href = '/login.html?redirect='+encodeURIComponent(location.pathname+location.search+location.hash); return; }
+  try{
+    const res = await fetch('/api/auth/me', { headers:{ 'Authorization':'Bearer ' + token }});
+    if(!res.ok) throw 0;
+    const data = await res.json();
+    $('#userLine').textContent = 'Aluno(a): ' + (data.email || 'desconhecido');
+  }catch(e){
+    localStorage.removeItem('md_token');
+    location.href = '/login.html?redirect='+encodeURIComponent(location.pathname+location.search+location.hash);
+  }
+})();
+
+// ===== TOC =====
+function buildTOC(){
+  const toc = $('#toc'); toc.innerHTML='';
+  const checks = load(KEY_CHECKS, {}), done = load(KEY_DONE, {});
+  $$('.module').forEach((sec, idx)=>{
+    const id = sec.id; const title = $('h2',sec).textContent.trim();
+    const cbs = $$('input[type="checkbox"][data-check]',sec);
+    const pct = cbs.length ? Math.round(cbs.filter(cb=>checks[cb.dataset.check]).length / cbs.length * 100) : 0;
+    const li = document.createElement('li'); li.className='nav-item';
+    li.innerHTML = \`
+      <div class="nav-index">\${String(idx+1).padStart(2,'0')}</div>
+      <div class="nav-title">
+        <a href="#\${id}">\${title}</a>
+        <div class="progressbar"><i style="width:\${pct}%"></i></div>
+        <div class="nav-meta">\${pct}% dos exercícios deste módulo</div>
+      </div>
+      <div class="nav-state">\${done[sec.dataset.module] ? '<span class="badge-done">Concluído</span>' : ''}</div>\`;
+    toc.appendChild(li);
+  });
+}
+
+// ===== States =====
+function applySavedState(){
+  const checks = load(KEY_CHECKS, {}), done = load(KEY_DONE, {});
+  $$('input[type="checkbox"][data-check]').forEach(cb=>{
+    cb.checked = !!checks[cb.dataset.check];
+    cb.addEventListener('change', ()=>{ const s=load(KEY_CHECKS,{}); s[cb.dataset.check]=cb.checked; save(KEY_CHECKS,s); updateProgress(); });
+  });
+  $$('input[type="checkbox"][data-complete]').forEach(cb=>{
+    cb.checked = !!done[cb.dataset.complete];
+    cb.addEventListener('change', ()=>{ const d=load(KEY_DONE,{}); d[cb.dataset.complete]=cb.checked; save(KEY_DONE,d); updateProgress(); });
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  const done = load(KEY_DONE, {});
+  const total = $$('.module').length;
+  const finished = Object.values(done).filter(Boolean).length;
+  const pct = total ? Math.round((finished/total)*100) : 0;
+  $('#statCount').textContent = \`\${finished}/\${total} módulos concluídos\`;
+  $('#overallProgress').textContent = \`Progresso: \${pct}% concluído\`;
+
+  const btn = $('#btnCertificate'), hint = $('#gradHint');
+  const unlocked = finished === total && total>0;
+  btn.disabled = !unlocked;
+  hint.textContent = unlocked ? 'Parabéns! Seu certificado está liberado.' : 'Complete todos os módulos para liberar seu certificado.';
+
+  buildTOC();
+}
+
+// ===== Search =====
+function setupSearch(){
+  const q = $('#q'); const sections = $$('.module');
+  q.addEventListener('keydown', (e)=>{ if(e.key === '/') e.preventDefault(); });
+  window.addEventListener('keydown', (e)=>{ if(e.key === '/'){ e.preventDefault(); q.focus(); }});
+  q.addEventListener('keydown', (e)=>{
+    if(e.key!=='Enter') return;
+    const term=q.value.trim().toLowerCase(); if(!term) return;
+    let best=null,bestScore=0;
+    sections.forEach(sec=>{
+      const txt = sec.textContent.toLowerCase();
+      const score = (txt.match(new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length;
+      if(score>bestScore){bestScore=score;best=sec;}
+    });
+    if(best){ $$('details.module-block',best).forEach(d=>d.setAttribute('open','open')); best.scrollIntoView({behavior:'smooth',block:'start'}); history.replaceState(null,'','#'+best.id); document.body.removeAttribute('data-drawer'); }
+  });
+}
+
+// ===== Expand/Collapse =====
+function expandAll(){ $$('details.module-block').forEach(d=>d.setAttribute('open','open')); }
+function collapseAll(){ $$('details.module-block').forEach(d=>d.removeAttribute('open')); }
+
+// ===== Certificate =====
+function openCertificate(){
+  const done = load(KEY_DONE, {});
+  const total = $$('.module').length;
+  const finished = Object.values(done).filter(Boolean).length;
+  if(finished !== total) return;
+  let name = load(KEY_NAME,''); if(!name){ name=(prompt('Digite seu nome:')||'').trim()||'Aluno(a)'; save(KEY_NAME,name); }
+  const d=new Date(), p=n=>String(n).padStart(2,'0'); const dateStr=\`\${p(d.getDate())}/\${p(d.getMonth()+1)}/\${d.getFullYear()}\`;
+  const w=window.open('','_blank','width=900,height=700');
+  w.document.write(\`<!doctype html><meta charset="utf-8"><title>Certificado</title>
+  <style>body{margin:0;display:flex;align-items:center;justify-content:center;height:100vh;background:#0b0b0d;color:#e9e9ee;font-family:Montserrat}
+  .paper{width:min(980px,94vw);padding:28px;background:#131316;border:1px solid rgba(255,255,255,.12);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
+  h1{margin:0 0 6px;background:linear-gradient(90deg,#fff5cf,#d4af37 60%,#fff5cf);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
+  .name{font-weight:800;text-align:center;margin:8px 0 4px}</style>
+  <div class="paper"><h1>Certificado de Conclusão</h1><div class="name">\${name}</div><p style="text-align:center">Concluiu todos os módulos do curso <b>Mente de Dono</b> em \${dateStr}.</p><p style="text-align:center"><button onclick="window.print()">Imprimir / Salvar PDF</button></p></div>\`);
+  w.document.close();
+}
+
+// ===== Apostila (PDF) =====
+async function generateApostilaPDF(){
+  try{
+    let name = load(KEY_NAME,''); if(!name){ name=(prompt('Digite seu nome para a apostila:')||'').trim()||'Aluno(a)'; save(KEY_NAME,name); }
+    const host=document.createElement('div'); host.style.position='fixed'; host.style.inset='0'; host.style.pointerEvents='none'; host.style.opacity='0';
+    const mods = $$('.module').map((sec,i)=>({ i:i+1, title:$('h2',sec).textContent.trim(), body:sec.textContent.trim() }));
+    host.innerHTML = '<div id="ap"><style>#ap{font-family:Montserrat;color:#e9e9ee;background:#0b0b0d}.paper{width:210mm;min-height:297mm;padding:16mm 14mm;background:#131316;border:1px solid rgba(255,255,255,.12)}</style><div class="paper"><h1>Apostila — Mente de Dono</h1><div>Aluno(a): '+name+'</div>'+mods.map(m=>'<h3>'+String(m.i).padStart(2,'0')+' — '+m.title+'</h3><pre style="white-space:pre-wrap;background:#0e0e12;padding:6mm;border:1px solid rgba(255,255,255,.1);border-radius:8px">'+m.body.replace(/[<>&]/g,s=>({ '<':'&lt;','>':'&gt;','&':'&amp;' }[s]))+'</pre>').join('')+'</div></div>';
+    document.body.appendChild(host);
+    const opt={ margin:[10,8,10,8], filename:'Apostila_Mente_de_Dono.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:window.devicePixelRatio||2, backgroundColor:'#0b0b0d'}, jsPDF:{unit:'mm',format:'a4',orientation:'portrait'} };
+    await html2pdf().from(host.querySelector('#ap')).set(opt).save();
+    setTimeout(()=>host.remove(),0);
+  }catch(e){ console.error(e); alert('Não foi possível gerar o PDF agora.'); }
+}
+
+// ===== Drawer (mobile) & Init =====
+function openDrawer(){ document.body.setAttribute('data-drawer','open'); }
+function closeDrawer(){ document.body.removeAttribute('data-drawer'); }
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Buttons
+  $('#btnDrawer')?.addEventListener('click', ()=>{ const open=document.body.getAttribute('data-drawer')==='open'; open?closeDrawer():openDrawer(); });
+  $('#drawerOverlay')?.addEventListener('click', closeDrawer);
+  $('#btnApostila')?.addEventListener('click', generateApostilaPDF);
+  $('#btnExpand')?.addEventListener('click', expandAll);
+  $('#btnCollapse')?.addEventListener('click', collapseAll);
+  $('#btnReset')?.addEventListener('click', ()=>{ if(!confirm('Zerar progresso?')) return; localStorage.removeItem(KEY_CHECKS); localStorage.removeItem(KEY_DONE); $$('input[type="checkbox"]').forEach(cb=>cb.checked=false); updateProgress(); });
+  $('#btnCertificate')?.addEventListener('click', openCertificate);
+
+  buildTOC(); applySavedState(); setupSearch();
+  window.addEventListener('keydown', (e)=>{ const k=e.key.toLowerCase(); if(k==='e') expandAll(); if(k==='r') collapseAll(); if(k==='/'){ e.preventDefault(); $('#q').focus(); } });
+});
+
+function logout(){ localStorage.removeItem('md_token'); location.href='/login.html'; }
+</script>
+</body>
+</html>

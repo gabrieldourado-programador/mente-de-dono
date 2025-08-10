@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login • Mente de Dono</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="preload" as="style" onload="this.rel='stylesheet'">
+<style>
+  body{margin:0;display:grid;place-items:center;min-height:100vh;background:#0b0b0d;color:#e9e9ee;font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+  .card{width:min(520px,92vw);background:#131316;border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+  .btn{appearance:none;border:none;cursor:pointer;padding:12px 14px;border-radius:10px;font-weight:800;color:#111;background:linear-gradient(180deg,#fff5cf,#d4af37);width:100%}
+  input{width:100%;padding:12px 12px;border-radius:10px;background:#0f0f12;border:1px solid rgba(255,255,255,.12);color:#e9e9ee;margin:8px 0 14px}
+  .tiny{opacity:.8;font-size:12px}
+  .link{background:#0e0e12;border:1px dashed rgba(255,255,255,.18);padding:10px;border-radius:8px;margin-top:10px;word-break:break-all}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1 style="margin:0 0 6px">💠 Mente de Dono</h1>
+    <p class="tiny">Acesse com o e-mail usado na compra (Hotmart).</p>
+    <input id="email" type="email" placeholder="seu@email.com" />
+    <button class="btn" id="btn">Enviar link de acesso</button>
+    <div id="msg" class="tiny" style="margin-top:8px"></div>
+    <div id="magic" class="link" style="display:none"></div>
+  </div>
+
+<script>
+const qs = new URLSearchParams(location.search);
+const redirect = qs.get('redirect') || '/';
+
+document.getElementById('btn').addEventListener('click', async ()=>{
+  const email = document.getElementById('email').value.trim();
+  if(!email) return alert('Digite seu e-mail');
+  const res = await fetch('/api/auth/request-link',{
+    method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, redirect })
+  });
+  const data = await res.json();
+  if(!res.ok){ document.getElementById('msg').textContent = data.error || 'Erro'; return; }
+  document.getElementById('msg').textContent = 'Link gerado! (em produção, enviaremos por e-mail)';
+  document.getElementById('magic').style.display='block';
+  document.getElementById('magic').textContent = data.link;
+  document.getElementById('magic').onclick = ()=> location.href = data.link;
+});
+</script>
+</body>
+</html>
